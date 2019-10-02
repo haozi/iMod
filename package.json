@@ -1,0 +1,49 @@
+{
+  "name": "imod",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "homepage": "https://github.com/haozi/imod",
+  "bugs": "https://github.com/haozi/imod/issues",
+  "license": "MIT",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "bin": {
+    "iMod": "bin/imod",
+    "imod": "bin/imod"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run lint && tsc",
+    "clean": "rimraf {src,test,spec,__tests__,scriptsty}/**/*.{js,map,d.ts}",
+    "debug": "node --inspect-brk src/index.js",
+    "dev": "npm run lint && npm run clean && tsc -w",
+    "jasmine": "nyc jasmine '{src/**/,}{test,spec,__tests__}/**/*.js'",
+    "lint": "tslint --project tsconfig.json --format stylish --fix",
+    "prepublish": "npm run test",
+    "test": "# npm run build && npm run jasmine"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "globy": "^0.1.8",
+    "ora": "^3.4.0",
+    "rollup": "^1.22.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "standard": "^14.3.1",
+    "tslib": "*",
+    "update-notifier": "^3.0.1",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.4.2",
+    "@types/node": "^11.13.21",
+    "@types/shelljs": "^0.8.5",
+    "jasmine": "^3.5.0",
+    "nyc": "^13.3.0",
+    "rimraf": "^3.0.0",
+    "tslint": "5.20.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.6.3"
+  },
+  "engines": {
+    "node": ">= 8.15.0"
+  }
+}
