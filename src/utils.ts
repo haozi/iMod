@@ -1,6 +1,7 @@
 import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
 import * as mkdirp from 'mkdirp'
+import camelCase from 'camelcase'
 
 export { rimraf, mkdirp }
 export const mRequire = (obj: any) => obj && obj.__esModule ? obj.default : obj
@@ -29,4 +30,10 @@ export const serial = async <T>(task: Promise<T>[]) => {
   for (let t of task) {
     await t
   }
+}
+
+const removeScope = (name: string) => name.replace(/^@.*\//, '')
+
+export const safeVariableName = (name: string) => {
+  return camelCase(removeScope(name).toLowerCase().replace(/((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, ''))
 }
