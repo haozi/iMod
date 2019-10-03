@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as yargs from 'yargs'
 import * as path from 'path'
 import { green } from 'colors'
-import { sh, mRequire } from './utils'
+import { mRequire } from './utils'
 import IMod from './index'
 import initTemplate from './initTemplate'
 import * as updateNotifier from 'update-notifier'
@@ -14,11 +14,6 @@ updateNotifier({ pkg }).notify()
 /* tslint:disable no-unused-expression */
 yargs
   .usage('$0 <cmd> [args]')
-  .command('run', '[run scripts]', () => {
-    const subCmd = process.argv[3]
-    if (!subCmd) return
-    sh(`npm run ${subCmd}`)
-  })
   .command('dev', '[watching mod]', () => {
     const { verbose = false } = yargs.argv
     new IMod({ cwd: process.cwd(), verbose }).dev()
