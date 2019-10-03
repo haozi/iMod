@@ -16,6 +16,7 @@ sudo npm install imod -g
 {
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "imod build",
     "dev": "imod dev"
@@ -24,7 +25,6 @@ sudo npm install imod -g
 ````
 
 ## How to use
-
 
 ### with cli
 ```bash
@@ -40,6 +40,12 @@ const imod = new IMod({
 
 imod.build()
 imod.dev()
+```
+
+### create an example:
+
+```bash
+imod init mod ./hello --lite # If you don't use '--lite', it will install node_modules
 ```
 
 ## Advanced configuration

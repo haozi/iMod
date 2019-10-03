@@ -1,6 +1,10 @@
 import * as childProcess from 'child_process'
+import * as rimraf from 'rimraf'
+import * as mkdirp from 'mkdirp'
+
+export { rimraf, mkdirp }
 export const mRequire = (obj: any) => obj && obj.__esModule ? obj.default : obj
-export const sh = (bash: string, { silent = false } = {}) => {
+export const sh = (bash: string, { silent = false } = {}): Promise<void> => {
   return new Promise((resolve, reject) => {
     const p = childProcess.exec(bash, (error) => {
       if (error && !silent) {

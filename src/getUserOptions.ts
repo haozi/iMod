@@ -1,10 +1,11 @@
 import * as path from 'path'
 import { mRequire } from './utils'
 export interface IConfig {
-  banner: string,
+  banner: string
+  verbose: boolean // 是否显示冗长日志
   compilerOptions: {
-    format: 'esm' | 'cjs',
-    extName: '.mjs' | '.js',
+    format: 'esm' | 'cjs'
+    extName: '.mjs' | '.js'
     target: 'exnext' | 'es5'
   }[]
 }

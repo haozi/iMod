@@ -3,12 +3,11 @@ import { rollup, watch } from 'rollup'
 import * as globy from 'globy'
 import ora from 'ora'
 import { red, green } from 'colors'
-import * as rimraf from 'rimraf'
 import * as updateNotifier from 'update-notifier'
 import * as pkg from '../package.json'
 import genRollupConfig from './rollup.config'
 import getUserOptions, { IConfig } from './getUserOptions'
-import { sh, parallelize } from './utils'
+import { sh, parallelize, rimraf } from './utils'
 
 updateNotifier({ pkg }).notify()
 
@@ -50,13 +49,15 @@ export default class IMod {
     const start = Date.now()
     process.chdir(this.cwd)
     this._clean()
-    global.console = {} as Console
-    Object.keys(this.console).forEach(type => {
-      global.console[type] = (...args: any[]) => {
-        if (this.silent) return
-        this.console[type].apply(this.console, args)
-      }
-    })
+    if (!this.config.verbose) {
+      global.console = {} as Console
+      Object.keys(this.console).forEach(type => {
+        global.console[type] = (...args: any[]) => {
+          if (this.silent) return
+          this.console[type].apply(this.console, args)
+        }
+      })
+    }
 
     const inputFiles: string[] = globy.glob(path.resolve(this.cwd, `src/index*{${IMod.EXTENSIONS.join(',')}}`))
     let task: Promise<void>[] = []
@@ -118,7 +119,7 @@ export default class IMod {
         }
       })
     } catch (e) {
-      console.error(e.stack)
+      this.console.error(e.stack)
       spinner.fail()
     } finally {
       if (!this.iswatching) {
@@ -130,7 +131,7 @@ export default class IMod {
   private async _format (outputFile: string, _format: 'esm' | 'cjs') {
     // if (format !== 'esm') return
     const standard = path.resolve(__dirname, '../node_modules/.bin/standard')
-    await sh(`${standard} ${outputFile} --fix`, { silent: true })
+    await sh(`${standard} ${outputFile} --fix`, { silent: !this.config.verbose })
   }
   private _relative (file: string) {
     return path.relative(this.cwd, file)
