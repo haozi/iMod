@@ -1461,6 +1461,11 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsonuri@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/jsonuri/-/jsonuri-2.1.8.tgz#560363230799d78f5dd2419b553338eb31c0ccd5"
+  integrity sha512-e2c9YlQNgk/O+L3rs2Q7LHx9dZPoPuEx2Mqn+kMyHxj3CugClppg8MODz1A7/q8WLBjtuUNJQtUll2SJHJigSA==
+
 jsx-ast-utils@^2.1.0:
   version "2.2.1"
   resolved "https://registry.npmjs.org/jsx-ast-utils/-/jsx-ast-utils-2.2.1.tgz#4d4973ebf8b9d2837ee91a8208cc66f3a2776cfb"
