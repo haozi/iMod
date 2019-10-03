@@ -41,7 +41,8 @@ imod build
 ```
 
 ### with JavaScript
-```typescriptimport Imod from 'imod'
+```typescript
+import Imod from 'imod'
 const iMod = new IMod({
   cwd: __dirname + '/../..'
 })
