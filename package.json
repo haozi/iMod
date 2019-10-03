@@ -1,7 +1,12 @@
 {
   "name": "imod",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A bundler for tiny modules, powered by Rollup.",
+  "keywords": [
+    "rollup",
+    "tiny module",
+    "typescript"
+  ],
   "homepage": "https://github.com/haozi/imod",
   "bugs": "https://github.com/haozi/imod/issues",
   "license": "MIT",
