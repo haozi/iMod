@@ -6,8 +6,9 @@ interface IOptions {
   target: string
   output: string
   banner: string
+  name: string
 }
-export default ({ input, format, target, output, banner }: IOptions) => {
+export default ({ input, format, target, output, banner, name }: IOptions) => {
   // acorn, acornInjectPlugins, cache, chunkGroupingSize, context, experimentalCacheExpiry, experimentalOptimizeChunks, experimentalTopLevelAwait, external, inlineDynamicImports, input, manualChunks, moduleContext, onwarn, perf, plugins, preserveModules, preserveSymlinks, shimMissingExports, strictDeprecations, treeshake, watch
   return {
     inputOptions: {
@@ -31,6 +32,7 @@ export default ({ input, format, target, output, banner }: IOptions) => {
       ]
     },
     outputOptions: {
+      name,
       banner,
       file: output,
       format

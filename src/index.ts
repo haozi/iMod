@@ -83,7 +83,8 @@ export default class IMod {
         output: outputFile,
         format,
         target,
-        banner: this.config.banner
+        banner: this.config.banner,
+        name: this.config.name || ''
       })
 
       if (!this.iswatching) {

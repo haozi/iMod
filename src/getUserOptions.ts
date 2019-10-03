@@ -1,8 +1,9 @@
 import * as path from 'path'
-import { mRequire } from './utils'
+import { mRequire, safeVariableName } from './utils'
 export interface IConfig {
   banner: string
   verbose: boolean // 是否显示冗长日志
+  name?: string
   compilerOptions: {
     format: 'esm' | 'cjs'
     extName: '.mjs' | '.js'
@@ -10,7 +11,10 @@ export interface IConfig {
   }[]
 }
 export default (cwd: string) => {
+  // 寻找顺序：imodconfig.js -> imodconfig.json -> ${package.json}.config.imod
+  const pkg = require(path.resolve(cwd, 'package.json'))
   const defaultConfig = {
+    name: safeVariableName(pkg.name),
     banner: '',
     compilerOptions: [
       {
@@ -25,10 +29,8 @@ export default (cwd: string) => {
       }
     ]
   }
-  // 寻找顺序：imodconfig.js -> imodconfig.json -> ${package.json}.config.imod
-  let pkg = require(path.resolve(cwd, 'package.json'))
-  let config!: IConfig
   const configList = [path.resolve(cwd, 'imodconfig.json'), path.resolve(cwd, 'imodconfig.js')]
+  let config!: IConfig
   for (let path of configList) {
     try {
       config = mRequire(require(path))
