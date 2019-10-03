@@ -1,9 +1,9 @@
-# imod
+# iMod
 
 
 ---
 
-## Install
+## 1. Install
 
 ```bash
 yarn global install imod
@@ -11,7 +11,17 @@ yarn global install imod
 sudo npm install imod -g
 ```
 
-* then add the scripts to your package.json:
+## 2. Showcase
+
+### create a new project:
+```bash
+imod init mod ./hello
+```
+
+### with an existing project:
+
+add these into [package.json](https://github.com/haozi/imod-template-module/blob/master/package.json#L7)
+
 ```json
 {
   "main": "dist/index.js",
@@ -22,9 +32,7 @@ sudo npm install imod -g
     "dev": "imod dev"
   }
 }
-````
-
-## How to use
+```
 
 ### with cli
 ```bash
@@ -34,12 +42,12 @@ imod build
 
 ### with JavaScript
 ```typescriptimport Imod from 'imod'
-const imod = new IMod({
+const iMod = new IMod({
   cwd: __dirname + '/../..'
 })
 
-imod.build()
-imod.dev()
+iMod.build()
+iMod.dev()
 ```
 
 ### create an example:
@@ -48,12 +56,13 @@ imod.dev()
 imod init mod ./hello --lite # If you don't use '--lite', it will install node_modules
 ```
 
-## Advanced configuration
+## 3. Advanced configuration
 
 * you can add a config at `package.json` / `./imodconfig.js` -> `./imodconfig.json`
 * The order in which imod looks up is `imodconfig.js` -> `imodconfig.json` -> `${package.json}.config.imod`
 
 configuration:
+
 ```javaScript
 module.exports = {
   banner: '',
