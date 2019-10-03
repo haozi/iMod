@@ -1,20 +1,20 @@
 {
   "name": "imod",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A bundler for tiny modules, powered by Rollup.",
   "keywords": [
     "rollup",
     "tiny module",
     "typescript"
   ],
-  "homepage": "https://github.com/haozi/imod",
-  "bugs": "https://github.com/haozi/imod/issues",
+  "homepage": "https://github.com/haozi/iMod",
+  "bugs": "https://github.com/haozi/iMod/issues",
   "license": "MIT",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "bin": {
-    "imod": "bin/imod",
     "iMod": "bin/imod",
+    "imod": "bin/imod",
     "imode": "bin/imod"
   },
   "scripts": {
@@ -31,6 +31,7 @@
     "camelcase": "^5.3.1",
     "colors": "^1.4.0",
     "globy": "^0.1.8",
+    "jsonuri": "^2.1.8",
     "mkdirp": "^0.5.1",
     "ora": "^3.4.0",
     "rimraf": "^3.0.0",

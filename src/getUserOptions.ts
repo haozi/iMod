@@ -1,5 +1,6 @@
 import * as path from 'path'
 import { mRequire, safeVariableName } from './utils'
+import * as jsonuri from 'jsonuri'
 export interface IConfig {
   banner: string
   verbose: boolean // 是否显示冗长日志
@@ -42,13 +43,9 @@ export default (cwd: string) => {
     } catch {/* */}
   }
   if (!config) {
-    try {
-      config = pkg.config.imod
-    } catch {/**/}
+    config = jsonuri.get(pkg, 'config/imod') || jsonuri.get(pkg, 'config/iMod') || jsonuri.get(pkg, 'imod') || jsonuri.get(pkg, 'iMod') || {}
   }
-  if (!config) {
-    config = {} as IConfig
-  }
+
   config = {
     ...defaultConfig,
     ...config
