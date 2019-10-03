@@ -3,13 +3,9 @@ import { rollup, watch } from 'rollup'
 import * as globy from 'globy'
 import ora from 'ora'
 import { red, green } from 'colors'
-import * as updateNotifier from 'update-notifier'
-import * as pkg from '../package.json'
 import genRollupConfig from './rollup.config'
 import getUserOptions, { IConfig } from './getUserOptions'
 import { sh, parallelize, rimraf } from './utils'
-
-updateNotifier({ pkg }).notify()
 
 export default class IMod {
   cwd: string
@@ -129,8 +125,8 @@ export default class IMod {
     }
   }
 
-  private async _format (outputFile: string, _format: 'esm' | 'cjs') {
-    // if (format !== 'esm') return
+  private async _format (outputFile: string, format: 'esm' | 'cjs') {
+    if (format !== 'esm') return
     const standard = path.resolve(__dirname, '../node_modules/.bin/standard')
     await sh(`${standard} ${outputFile} --fix`, { silent: !this.config.verbose })
   }

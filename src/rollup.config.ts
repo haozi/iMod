@@ -1,4 +1,6 @@
+import * as uglify from 'rollup-plugin-uglify-es'
 import * as _typescript2 from 'rollup-plugin-typescript2'
+
 const typescript2: any = _typescript2
 interface IOptions {
   input: string
@@ -28,8 +30,10 @@ export default ({ input, format, target, output, banner, name }: IOptions) => {
             }
           },
           useTsconfigDeclarationDir: true
-        })
-      ]
+        }),
+
+        format === 'umd' && uglify()
+      ].filter(Boolean)
     },
     outputOptions: {
       name,

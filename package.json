@@ -1,6 +1,6 @@
 {
   "name": "imod",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A bundler for tiny modules, powered by Rollup.",
   "keywords": [
     "rollup",
@@ -36,7 +36,7 @@
     "rimraf": "^3.0.0",
     "rollup": "^1.22.0",
     "rollup-plugin-typescript2": "^0.24.3",
-    "rollup-plugin-uglify": "^6.0.3",
+    "rollup-plugin-uglify-es": "^0.0.1",
     "standard": "^14.3.1",
     "tslib": "*",
     "update-notifier": "^3.0.1",
