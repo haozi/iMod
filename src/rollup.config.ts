@@ -21,7 +21,7 @@ export default ({ input, format, target, output, banner }: IOptions) => {
           tsconfigOverride: {
             compilerOptions: {
               declaration: true,
-              declarationDir: './dist/typings',
+              declarationDir: './dist/types',
               module: 'esnext',
               target
             }
