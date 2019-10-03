@@ -5,8 +5,11 @@ import { green } from 'colors'
 import { sh, mRequire } from './utils'
 import IMod from './index'
 import initTemplate from './initTemplate'
+import * as updateNotifier from 'update-notifier'
+import * as pkg from '../package.json'
 
 const KEYWORDS = ['run', 'build', 'dev', 'init']
+updateNotifier({ pkg }).notify()
 
 /* tslint:disable no-unused-expression */
 yargs
@@ -16,21 +19,26 @@ yargs
     if (!subCmd) return
     sh(`npm run ${subCmd}`)
   })
-  .command('dev', '[watching mod]', (args) => {
-    const { verbose = false } = args.argv
+  .command('dev', '[watching mod]', () => {
+    const { verbose = false } = yargs.argv
     new IMod({ cwd: process.cwd(), verbose }).dev()
   })
-  .command('build', '[build mod]', (args) => {
-    const { verbose = false } = args.argv
+  .command('build', '[build mod]', () => {
+    const { verbose = false } = yargs.argv
     new IMod({ cwd: process.cwd(), verbose }).build()
   })
-  // imod init mod ./
-  .command('init', '[init a demo: e.g: `imod init mod .`]', (args) => {
+  // imod init . --templateName=module --lite=true
+  .command('init', '[init a demo: e.g: `imod init .`]', () => {
+    yargs
+      .alias('m', 'templateName')
+      .alias('l', 'lite')
     const cwd = process.cwd()
-    const { lite = false } = args.argv
-    let [templateName = 'module', targetFolder = '.'] = args.argv._.slice(1)
-    targetFolder = path.resolve(cwd, targetFolder)
+    let { lite = false, templateName = false } = yargs.argv
+    let [targetFolder = '.'] = yargs.argv._.slice(1)
+    templateName = typeof templateName === 'boolean' ? 'module' : templateName
+    targetFolder = path.resolve(cwd, targetFolder + '')
     initTemplate({ templateName, targetFolder, lite })
+    // console.log(templateName, targetFolder, lite)
   })
   .version()
   .alias('v', 'version')

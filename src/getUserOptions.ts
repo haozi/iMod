@@ -26,6 +26,11 @@ export default (cwd: string) => {
         format: 'cjs',
         extName: '.js',
         target: 'es5'
+      },
+      {
+        format: 'umd',
+        extName: '.min.js',
+        target: 'es5'
       }
     ]
   }

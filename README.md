@@ -15,7 +15,7 @@ sudo npm install imod -g
 
 ### create a new project:
 ```bash
-imod init mod ./hello
+imod init ./hello
 ```
 
 ### with an existing project:
@@ -54,7 +54,7 @@ iMod.dev()
 ### create an example:
 
 ```bash
-imod init mod ./hello --lite # If you don't use '--lite', it will install node_modules
+imod init ./hello --templateName=module --lite=true # If you don't use '--lite', it will try to install node_modules
 ```
 
 ## 3. Advanced configuration
@@ -62,21 +62,28 @@ imod init mod ./hello --lite # If you don't use '--lite', it will install node_m
 * you can add a config at `package.json`, `./imodconfig.js`, `./imodconfig.json`
 * The order in which imod looks up is `imodconfig.js` -> `imodconfig.json` -> `${package.json}.config.imod`
 
-configuration:
 
-```javaScript
-module.exports = {
-  banner: '',
-  compilerOptions: [
+this is the default configuration:
+
+```javascript
+{
+  "name": moduleName, // if not set, will guess from ${package.json}.name
+  "banner": "", // if not set, return ''
+  "compilerOptions": [
     {
-      format: 'esm',
-      extName: '.mjs',
-      target: 'esnext'
+      "format": "esm",
+      "extName": ".mjs",
+      "target": "esnext"
     },
     {
-      format: 'cjs',
-      extName: '.js',
-      target: 'es5'
+      "format": "cjs",
+      "extName": ".js",
+      "target": "es5"
+    },
+    {
+      "format": "umd",
+      "extName": ".min.js",
+      "target": "es5"
     }
   ]
 }
