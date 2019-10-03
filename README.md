@@ -59,7 +59,7 @@ imod init mod ./hello --lite # If you don't use '--lite', it will install node_m
 
 ## 3. Advanced configuration
 
-* you can add a config at `package.json` / `./imodconfig.js` -> `./imodconfig.json`
+* you can add a config at `package.json`, `./imodconfig.js`, `./imodconfig.json`
 * The order in which imod looks up is `imodconfig.js` -> `imodconfig.json` -> `${package.json}.config.imod`
 
 configuration:
