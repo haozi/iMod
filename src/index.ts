@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { rollup, watch } from 'rollup'
 import * as globy from 'globy'
-import ora from 'ora'
+import * as ora from 'ora'
 import { red, green } from 'colors'
 import genRollupConfig from './rollup.config'
 import getUserOptions, { IConfig } from './getUserOptions'

@@ -5,11 +5,14 @@ import { green } from 'colors'
 import { mRequire } from './utils'
 import IMod from './index'
 import initTemplate from './initTemplate'
-import * as updateNotifier from 'update-notifier'
+import * as updater from 'npm-updater'
 import * as pkg from '../package.json'
 
 const KEYWORDS = ['run', 'build', 'dev', 'init']
-updateNotifier({ pkg }).notify()
+updater({
+  package: pkg
+  // level: 'major'
+})
 
 /* tslint:disable no-unused-expression */
 yargs
