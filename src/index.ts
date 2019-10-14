@@ -46,13 +46,21 @@ export default class IMod {
     process.chdir(this.cwd)
     this._clean()
     if (!this.config.verbose) {
-      global.console = {} as Console
-      Object.keys(this.console).forEach(type => {
-        global.console[type] = (...args: any[]) => {
-          if (this.silent) return
-          this.console[type].apply(this.console, args)
-        }
-      })
+      try {
+        global.console = {} as Console
+        Object.keys(this.console).forEach(type => {
+          try {
+            global.console[type] = (...args: any[]) => {
+              if (this.silent) return
+              this.console[type].apply(this.console, args)
+            }
+          } catch {
+            // TypeError: Cannot set property console of #<Object> which has only a getter
+          }
+        })
+      } catch {
+        // TypeError: Cannot set property console of #<Object> which has only a getter
+      }
     }
 
     const inputFiles: string[] = globy.glob(path.resolve(this.cwd, `src/index*{${IMod.EXTENSIONS.join(',')}}`))
