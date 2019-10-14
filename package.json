@@ -1,6 +1,6 @@
 {
   "name": "imod",
-  "version": "1.1.4",
+  "version": "1.1.8",
   "description": "A bundler for tiny modules, powered by Rollup.",
   "keywords": [
     "rollup",
@@ -54,6 +54,6 @@
     "tslint-config-standard": "^8.0.1"
   },
   "engines": {
-    "node": ">= 8.15.0"
+    "node": ">= 4"
   }
 }
