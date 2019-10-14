@@ -14,9 +14,9 @@ export default class IMod {
   silent = false
   console !: Console
   iswatching = false
-  static CACHE_PATH = './node_modules/.cache/imod'
-  static EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs']
-  static WATCH_OPTS = {
+  private static CACHE_PATH = './node_modules/.cache/imod'
+  private static EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs']
+  private static WATCH_OPTS = {
     clearScreen: true,
     exclude: 'node_modules/**'
   }
