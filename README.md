@@ -59,8 +59,8 @@ imod init ./hello --templateName=module --lite=true # If you don't use '--lite',
 
 ## 3. Advanced configuration
 
-* you can add a config at `package.json`, `./imodconfig.js`, `./imodconfig.json`
-* The order in which imod looks up is `imodconfig.js` -> `imodconfig.json` -> `${package.json}.config.imod`
+* you can add a config at `package.json`, `./imod.config.js`, `./imod.config.json`, `./imodconfig.js`, `./imodconfig.json`
+* The order in which imod looks up is `./imod.config.js` -> `./imod.config.json` -> `imodconfig.js` -> `imodconfig.json` -> `${package.json}.config.imod`
 
 
 this is the default configuration:
