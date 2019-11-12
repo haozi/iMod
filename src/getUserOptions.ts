@@ -12,7 +12,7 @@ export interface IConfig {
   }[]
 }
 export default (cwd: string) => {
-  // 寻找顺序：imodconfig.js -> imodconfig.json -> ${package.json}.config.imod
+  // 寻找顺序：imod.config.js -> imod.config.json -> imodconfig.js -> imodconfig.json -> ${package.json}.config.imod
   const pkg = require(path.resolve(cwd, 'package.json'))
   const defaultConfig = {
     name: safeVariableName(pkg.name),
@@ -35,13 +35,20 @@ export default (cwd: string) => {
       }
     ]
   }
-  const configList = [path.resolve(cwd, 'imodconfig.json'), path.resolve(cwd, 'imodconfig.js')]
+  const configList = [
+    path.resolve(cwd, 'imod.config.js'),
+    path.resolve(cwd, 'imod.config.json'),
+    path.resolve(cwd, 'imodconfig.js'),
+    path.resolve(cwd, 'imodconfig.json')
+  ]
   let config!: IConfig
   for (let path of configList) {
     try {
       config = mRequire(require(path))
+      if (config) break
     } catch {/* */}
   }
+
   if (!config) {
     config = jsonuri.get(pkg, 'config/imod') || jsonuri.get(pkg, 'config/iMod') || jsonuri.get(pkg, 'imod') || jsonuri.get(pkg, 'iMod') || {}
   }
