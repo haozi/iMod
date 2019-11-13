@@ -6,7 +6,7 @@
 ## 1. Install
 
 ```bash
-yarn global install imod
+yarn global add imod
 # or
 sudo npm install imod -g
 ```
