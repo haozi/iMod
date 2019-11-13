@@ -53,7 +53,7 @@ export default async ({ templateName, targetFolder, lite }: IOptions) => {
   rimraf.sync(path.resolve(targetFolder, '.git'))
   if (!lite) {
     await sh('git init && git add .')
-    await sh('yarn', { silent: true })
+    // await sh('yarn', { silent: true })
   }
   console.log(green(`init scafolding succeed: \`${targetFolder}\``))
 }
