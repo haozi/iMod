@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import * as path from 'path'
 import { rollup, watch } from 'rollup'
 import * as globy from 'globy'
@@ -5,7 +6,8 @@ import * as ora from 'ora'
 import { red, green } from 'colors'
 import genRollupConfig from './rollup.config'
 import getUserOptions, { IConfig } from './getUserOptions'
-import { sh, parallelize, rimraf } from './utils'
+import { parallelize, rimraf } from './utils'
+import * as standard from 'standard'
 
 export default class IMod {
   cwd: string
@@ -126,6 +128,7 @@ export default class IMod {
     } catch (e) {
       this.console.error(e.stack)
       spinner.fail()
+      // rimraf.sync(outputFile)
     } finally {
       if (!this.iswatching) {
         this.silent = false
@@ -135,8 +138,12 @@ export default class IMod {
 
   private async _format (outputFile: string, format: 'esm' | 'cjs') {
     if (format !== 'esm') return
-    const standard = path.resolve(__dirname, '../node_modules/.bin/standard')
-    await sh(`${standard} ${outputFile} --fix`, { silent: !this.config.verbose })
+    try {
+      let code = fs.readFileSync(outputFile, 'utf8')
+      const standardLint = standard.lintTextSync(code, { fix: true })
+      code = standardLint.results[0].output
+      fs.writeFileSync(outputFile, code, 'utf8')
+    } catch { /* noop */ }
   }
   private _relative (file: string) {
     return path.relative(this.cwd, file)
