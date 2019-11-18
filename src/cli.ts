@@ -9,9 +9,13 @@ import * as updater from 'npm-updater'
 import * as pkg from '../package.json'
 
 const KEYWORDS = ['run', 'build', 'dev', 'init']
+
+// check version
 updater({
-  package: pkg
-  // level: 'major'
+  package: pkg,
+  abort: true,
+  interval: '1d',
+  updateMessage: `\nplease run \`yarn global add ${pkg['name']}@latest\` to update\n`
 })
 
 /* tslint:disable no-unused-expression */
