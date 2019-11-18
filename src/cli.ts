@@ -67,6 +67,7 @@ if (subCmd && !KEYWORDS.includes(subCmd)) {
 }
 
 if (process.argv.length < 3) {
-  console.log(green(fs.readFileSync(`${__dirname}/../logo`, 'utf8')))
+  const logo = '  ' + fs.readFileSync(`${__dirname}/../logo`, 'utf8').trim() + ` @${pkg['version']}` + '\n'
+  console.log(green(logo))
   console.log((yargs as any).getUsageInstance().help())
 }
