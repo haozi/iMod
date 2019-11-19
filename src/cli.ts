@@ -1,4 +1,3 @@
-import * as fs from 'fs'
 import * as yargs from 'yargs'
 import * as path from 'path'
 import { green } from 'colors'
@@ -67,7 +66,8 @@ if (subCmd && !KEYWORDS.includes(subCmd)) {
 }
 
 if (process.argv.length < 3) {
-  const logo = '  ' + fs.readFileSync(`${__dirname}/../logo`, 'utf8').trim() + ` @${pkg['version']}` + '\n'
+  let logo = '  _ __  __           _\n (_)  \\/  |         | |\n  _| \\  / | ___   __| |\n | | |\\/| |/ _ \\ / _` |\n | | |  | | (_) | (_| |\n |_|_|  |_|\\___/ \\__,_|'
+  logo += ` @${pkg['version']}` + '\n'
   console.log(green(logo))
-  console.log((yargs as any).getUsageInstance().help())
+  console.log(yargs.getUsageInstance().help())
 }
