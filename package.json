@@ -1,6 +1,6 @@
 {
   "name": "imod",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "A bundler for tiny modules, powered by Rollup.",
   "keywords": [
     "rollup",
@@ -28,7 +28,7 @@
     "test": "# npm run build && npm run jasmine"
   },
   "dependencies": {
-    "@types/node": "^12.12.8",
+    "@types/node": "^12.12.9",
     "camelcase": "^5.3.1",
     "colors": "^1.4.0",
     "globy": "^0.1.8",
@@ -37,13 +37,13 @@
     "npm-updater": "^3.0.3",
     "ora": "^3.4.0",
     "rimraf": "^3.0.0",
-    "rollup": "^1.27.1",
-    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup": "^1.27.2",
+    "rollup-plugin-typescript2": "^0.25.2",
     "rollup-plugin-uglify-es": "^0.0.1",
     "standard": "^14.3.1",
     "tslib": "^1.10.0",
     "typescript": "^3.7.2",
-    "yargs": "^14.2.1"
+    "yargs": "^15.0.1"
   },
   "devDependencies": {
     "@types/jasmine": "^3.4.6",
@@ -54,6 +54,6 @@
     "tslint-config-standard": "^9.0.0"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">= 8"
   }
 }
