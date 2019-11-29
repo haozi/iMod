@@ -1,6 +1,6 @@
 import * as yargs from 'yargs'
 import * as path from 'path'
-import { green } from 'colors'
+import { green, yellow } from 'colors'
 import { mRequire } from './utils'
 import IMod from './index'
 import initTemplate from './initTemplate'
@@ -15,7 +15,7 @@ updater({
   abort: false,
   interval: '1d',
   registry: 'https://registry.npm.taobao.org',
-  updateMessage: `\nplease run \`yarn global add ${pkg['name']}@latest\` to update\n`
+  updateMessage: yellow(`\nplease run \`yarn global add ${pkg['name']}@latest\` to update\n`)
 })
 
 /* tslint:disable no-unused-expression */
