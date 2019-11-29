@@ -12,8 +12,9 @@ const KEYWORDS = ['run', 'build', 'dev', 'init']
 // check version
 updater({
   package: pkg,
-  abort: true,
+  abort: false,
   interval: '1d',
+  registry: 'https://registry.npm.taobao.org',
   updateMessage: `\nplease run \`yarn global add ${pkg['name']}@latest\` to update\n`
 })
 

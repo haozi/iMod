@@ -69,6 +69,7 @@ this is the default configuration:
 {
   "name": moduleName, // if not set, will guess from ${package.json}.name
   "banner": "", // if not set, return ''
+  "input": "", // string | string[] | null. if not set, will find src/index*{.ts,.tsx,.js,.jsx,.es6,.es,.mjs}
   "compilerOptions": [
     {
       "format": "esm",
