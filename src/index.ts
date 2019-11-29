@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { rollup, watch } from 'rollup'
-import * as globy from 'globy'
+import * as glob from 'glob'
 import * as ora from 'ora'
 import { red, green } from 'colors'
 import genRollupConfig from './rollup.config'
@@ -65,7 +65,16 @@ export default class IMod {
       }
     }
 
-    const inputFiles: string[] = globy.glob(path.resolve(this.cwd, `src/index*{${IMod.EXTENSIONS.join(',')}}`))
+    let inputFiles: any = this.config.input
+    if (!Array.isArray(inputFiles)) inputFiles = [inputFiles]
+    inputFiles = inputFiles.filter(input => input && typeof input === 'string')
+
+    if (inputFiles.length) {
+      inputFiles = inputFiles.map(input => path.resolve(this.cwd, input))
+    } else {
+      inputFiles = glob.sync(path.resolve(this.cwd, `src/index*{${IMod.EXTENSIONS.join(',')}}`))
+    }
+
     let task: Promise<void>[] = []
     for (let inputFile of inputFiles) {
       const fileName = path.basename(inputFile).replace(path.extname(inputFile), '')
