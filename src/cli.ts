@@ -1,6 +1,6 @@
 import * as yargs from 'yargs'
 import * as path from 'path'
-import { green, yellow } from 'colors'
+import { green, yellow, gray } from 'colors'
 import { mRequire } from './utils'
 import IMod from './index'
 import initTemplate from './initTemplate'
@@ -17,16 +17,18 @@ updater({
   registry: 'https://registry.npm.taobao.org',
   updateMessage: yellow(`\nplease run \`yarn global add ${pkg['name']}@latest\` to update\n`)
 })
-
+const setNodeEnv = (mode) => { mode && typeof mode === 'string' && (process.env.NODE_ENV = mode) }
 /* tslint:disable no-unused-expression */
 yargs
   .usage('$0 <cmd> [args]')
   .command('dev', '[watching mod]', () => {
-    const { verbose = false } = yargs.argv
+    const { verbose = false, mode } = yargs.argv
+    setNodeEnv(mode)
     new IMod({ cwd: process.cwd(), verbose }).dev()
   })
   .command('build', '[build mod]', () => {
-    const { verbose = false } = yargs.argv
+    const { verbose = false, mode } = yargs.argv
+    setNodeEnv(mode)
     new IMod({ cwd: process.cwd(), verbose }).build()
   })
   // imod init . --templateName=module --lite=true
@@ -70,5 +72,6 @@ if (process.argv.length < 3) {
   let logo = '  _ __  __           _\n (_)  \\/  |         | |\n  _| \\  / | ___   __| |\n | | |\\/| |/ _ \\ / _` |\n | | |  | | (_) | (_| |\n |_|_|  |_|\\___/ \\__,_|'
   logo += ` @${pkg['version']}` + '\n'
   console.log(green(logo))
+  console.log(gray('https://github.com/haozi/iMod'))
   console.log(yargs.getUsageInstance().help())
 }

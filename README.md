@@ -66,25 +66,27 @@ imod init ./hello --templateName=module --lite=true # If you don't use '--lite',
 this is the default configuration:
 
 ```javascript
-{
-  "name": moduleName, // if not set, will guess from ${package.json}.name
-  "banner": "", // if not set, return ''
-  "input": "", // string | string[] | null. if not set, will find src/index*{.ts,.tsx,.js,.jsx,.es6,.es,.mjs}
-  "compilerOptions": [
+module.exports = {
+  name: moduleName, // if not set, will guess from ${package.json}.name
+  banner: '', // if not set, return ''
+  input: '', // string | string[] | null. if not set, will find src/index*{.ts,.tsx,.js,.jsx,.es6,.es,.mjs}
+  outDir: '', // string. default is './dist'
+  declarationDir: false,  // string | false. if false will no typings
+  compilerOptions: [
     {
-      "format": "esm",
-      "extName": ".mjs",
-      "target": "esnext"
+      format: 'esm',
+      extName: '.mjs',
+      target: 'esnext'
     },
     {
-      "format": "cjs",
-      "extName": ".js",
-      "target": "es5"
+      format: 'cjs',
+      extName: '.js',
+      target: 'es5'
     },
     {
-      "format": "umd",
-      "extName": ".min.js",
-      "target": "es5"
+      format: 'umd',
+      extName: '.min.js',
+      target: 'es5'
     }
   ]
 }

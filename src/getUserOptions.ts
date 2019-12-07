@@ -3,9 +3,11 @@ import { mRequire, safeVariableName } from './utils'
 import * as jsonuri from 'jsonuri'
 export interface IConfig {
   input?: string | string[]
+  outDir: string
   banner: string
   verbose: boolean // 是否显示冗长日志
   name?: string
+  declarationDir?: string | null | false // types 目录
   compilerOptions: {
     format: 'esm' | 'cjs'
     extName: '.mjs' | '.js'
@@ -18,6 +20,7 @@ export default (cwd: string) => {
   const defaultConfig = {
     name: safeVariableName(pkg.name),
     banner: '',
+    outDir: 'dist',
     compilerOptions: [
       {
         format: 'esm',

@@ -79,7 +79,7 @@ export default class IMod {
     for (let inputFile of inputFiles) {
       const fileName = path.basename(inputFile).replace(path.extname(inputFile), '')
       for (let { extName, format, target } of this.config.compilerOptions) {
-        const outputFile = path.resolve(this.cwd, 'dist', `${fileName}${extName}`)
+        const outputFile = path.resolve(this.cwd, this.config.outDir, `${fileName}${extName}`)
         task.push(this._rollup({ inputFile, outputFile, format, target }))
       }
     }
@@ -99,7 +99,9 @@ export default class IMod {
         format,
         target,
         banner: this.config.banner,
-        name: this.config.name || ''
+        name: this.config.name || '',
+        outDir: this.config.outDir,
+        declarationDir: this.config.declarationDir
       })
 
       if (!this.iswatching) {
